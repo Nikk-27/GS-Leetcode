@@ -1,5 +1,6 @@
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
+        # Sliding Window
         count1 = {}
         count2 = {}
         res = float('inf')
@@ -24,4 +25,9 @@ class Solution:
                     i += 1
 
         return ans
+
+# TC = O(n)
+# SC = O(n)
+
+
 
