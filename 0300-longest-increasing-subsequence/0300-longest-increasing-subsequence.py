@@ -1,7 +1,5 @@
 class Solution:
 
-    
-
     def lengthOfLIS(self, nums: List[int]) -> int:
         
         # whenever subsequence asked we use take/ skip method
@@ -30,9 +28,8 @@ class Solution:
         return(solve(0, -1))
         
 
-
 # Time: O(N^2) due to memoization table of size N x (N+1)
-# Space: O(N^2) for the DP array + recursion stack up to O(N)
+# Space: O(N^2) for the DP array (dp[][]) + recursion stack up to O(N)
 
-# TC = O(2^N) without memoization
-# SC = O(2^N) without memoization because for each position we have 2 options
+# TC = O(2^N) without memoization because for each position we have 2 options
+# SC = O(N) without memoization (just the recursion stack)
