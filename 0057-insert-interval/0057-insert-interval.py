@@ -1,31 +1,25 @@
 class Solution:
     def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
         n = len(intervals)
-        l = 0
-        r = n-1
-        
-        if not intervals:
-           return [newInterval]
+        result = []
+        i = 0
 
-        while l <= r:
-            mid = l + (r-l) // 2
-            if intervals[mid][0] < newInterval[0]:
-                l = mid + 1
-            else: r = mid - 1
-
-         # Insert newInterval at the found position    
-        intervals.insert(l, newInterval) #O(n)
-
-        # Merge overlapping intervals
-        res = []
-        for interval in intervals:
-            # If res is empty or there is no overlap, add the interval to the result
-            if not res or res[-1][1] < interval[0]:
-                res.append(interval)
-            # If there is an overlap, merge the intervals by updating the end of the last interval in res
+        while i < n:
+            if intervals[i][1] < newInterval[0]:
+                result.append(intervals[i])
+            elif intervals[i][0] > newInterval[1]:
+                break
             else:
-                res[-1][1] = max(res[-1][1], interval[1])
-        return res
-
-# TC = O(n + log n) = O(n)
+                newInterval[0] = min(intervals[i][0], newInterval[0])
+                newInterval[1] = max(intervals[i][1], newInterval[1])
+            i += 1
+        
+        result.append(newInterval)
+        while i < n:
+            result.append(intervals[i])
+            i += 1
+        
+        return result
+        
+# TC = O(n)
 # SC = O(n)
